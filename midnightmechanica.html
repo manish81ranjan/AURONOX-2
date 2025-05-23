@@ -11,14 +11,17 @@
     <link rel="stylesheet" href="watches.css">
     <link rel="stylesheet" href="footer.css">
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background: #000000;
         }
-        .product-info{
-          color: black;
-        }
+
         .product-detail {
             max-width: 1200px;
             margin: auto;
@@ -26,23 +29,36 @@
             display: flex;
             flex-wrap: wrap;
             gap: 40px;
+            background: rgb(0, 0, 0);
         }
 
         .image-gallery {
             flex: 1;
-            min-width: 300px;
+            min-width: 320px;
         }
 
-        .image-gallery img {
-            width: 100%;
+        .slider-wrapper {
+            overflow: hidden;
             border-radius: 10px;
-            cursor: zoom-in;
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slider-track img {
+            width: 100%;
+            flex-shrink: 0;
+            object-fit: cover;
+            border-radius: 10px;
         }
 
         .thumbnail-list {
             display: flex;
             gap: 10px;
             margin-top: 10px;
+            flex-wrap: wrap;
         }
 
         .thumbnail-list img {
@@ -59,7 +75,7 @@
 
         .product-info {
             flex: 1;
-            min-width: 300px;
+            min-width: 320px;
         }
 
         .product-info h1 {
@@ -77,19 +93,6 @@
             margin-top: 20px;
         }
 
-        .zoomed {
-            position: fixed;
-            top: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 80%;
-            max-height: 80%;
-            z-index: 9999;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            display: none;
-            cursor: zoom-out;
-        }
-
         .buy-btn {
             background-color: #000;
             color: #fff;
@@ -104,136 +107,174 @@
         .buy-btn:hover {
             background-color: #333;
         }
+
+        @media (max-width: 768px) {
+            .product-detail {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <div class="product-detail">
-        <div class="image-gallery">
-            <img id="main-image" src="AURONOX1.jpg" alt="Fossil Watch" onclick="zoomImage(this.src)">
-            <div class="thumbnail-list">
-                <img src="AURONOX1.jpg" class="active" onclick="changeImage(this)">
-                <img src="AURONOX1.1.jpg" onclick="changeImage(this)">
-                <img src="AURONOX1.2.jpg" onclick="changeImage(this)">
-                <!-- <img src="AURONOX23.jpg" onclick="changeImage(this)"> -->
-            </div>
-        </div>
-        <div class="product-info">
-            <h1>Midnight Mechanica</h1>
-            <p class="price">₹77,500</p>
-            <p class="desc">
-                AURONOX presents the Midnight Mechanica, a symphony of intricate craftsmanship and timeless design. This
-                masterpiece captures the soul of micro-mechanical engineering, encased in a sculpted body of obsidian
-                black and deep gold. At its heart, the visible skeleton gears whisper stories of movement, time, and
-                beauty—anchored by a hand-engraved pastoral landscape and a crescent moon complication..
-            </p>
-            <div class="specs">
-                <h3>Specifications:</h3>
-                <ul>
-                    <li>Dial Color: Gold</li>
-                    <li>Strap Type: Metal</li>
-                    <li>Movement Type: Automatic</li>
-                    <li>Warranty: 2 Years</li>
-                    <li>Water Resistant: Yes</li>
-                </ul>
-                <button class="buy-btn"><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>
-                <button class="buy-btn"><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
-            </div>
-        </div>
-    </div>
-
-    <img id="zoomed-img" class="zoomed" onclick="this.style.display='none'" />
-    
-
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="logo.png" alt="AURONOX Logo" />
-                <p>Be luxurious always.</p>
-            </div>
-
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <!-- <li><a href="#watches">Everything</a></li> -->
-                    <li><a href="#watches"><a href="index.html">Everything</a></a></li>
-
-                    <!-- <li><a href="#Women"><a href="women.html"></a>Women</a></li> -->
-                    <li><a href="#Women"><a href="women.html">Women</a></a></li>
-                    <!-- <li><a href="#Men"><a href="men.html"></a>Men</a></li> -->
-                    <li><a href="#men"><a href="men.html">Men</a></a></li>
-                    <!-- <li><a href="#Accessories">Accessories</a></li> -->
-                    <li><a href="#Accessories"><a href="Accessories.html">Accessories</a></a></li>
-                    <!-- <li><a href="#CONTACTUS">Contact Us</a></li> -->
-                    <li><a href="#contact"><a href="contact.html">Contact us</a></a></li>
-                    <li><a href="#ADDTOCART"><a href="ADDTOCART.html"> Add to Cart <i
-                                    class="fa-solid fa-cart-shopping"></i></a></a></li>
-                    <!-- <li><a href="#PROFILE"><i class="fa-solid fa-user"></i></a></li> -->
-                    <li><a href="#PROFILE"><a href="profile.html">profile <i class="fa-solid fa-user"></i></a></a></li>
-                </ul>
-            </div>
-
-            <div class="footer-social">
-                <h4>Follow Us</h4>
-                <div class="menu">
-                    <div class="toggle">
-                        <ion-icon name="share-social"></ion-icon>
+        <div class="product-detail">
+            <div class="image-gallery">
+                <div class="slider-wrapper">
+                    <div class="slider-track" id="sliderTrack">
+                        <img src="AURONOX1.jpg" alt="Image 1">
+                        <img src="AURONOX1.1.jpg" alt="Image 2">
+                        <img src="AURONOX1.2.jpg" alt="Image 3">
+                        
                     </div>
-                    <li style="--i: 0; --clr: #1877f2">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    </li>
-                    <li style="--i: 1; --clr: #25d366">
-                        <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    </li>
-                    <li style="--i: 2; --clr: #1b1e21">
-                        <a href="#"><i class="fab fa-x-twitter"></i></a>
-                    </li>
-                    <li style="--i: 3; --clr: #ff5733">
-                        <a href="#"><i class="fab fa-reddit-alien"></i></a>
-                    </li>
-                    <li style="--i: 4; --clr: #0a66c2">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </li>
-                    <li style="--i: 5; --clr: #c32aa3">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </li>
-                    <li style="--i: 6; --clr: #1b1e21">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                    </li>
-                    <li style="--i: 7; --clr: #ff0000">
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </li>
                 </div>
-                <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js'></script>
+                <div class="thumbnail-list">
+                    <img src="AURONOX1.jpg" class="active" onclick="slideTo(0)">
+                    <img src="AURONOX1.1.jpg" onclick="slideTo(1)">
+                    <img src="AURONOX1.2.jpg" onclick="slideTo(2)">
+                    
+                </div>
+            </div>
+
+            <div class="product-info">
+                <h1>Midnight Mechanica</h1>
+                <p class="price">₹77,500</p>
+                <p class="desc">
+                    AURONOX presents the Midnight Mechanica, a symphony of intricate craftsmanship and timeless design.
+                    This
+                    masterpiece captures the soul of micro-mechanical engineering, encased in a sculpted body of
+                    obsidian
+                    black and deep gold. At its heart, the visible skeleton gears whisper stories of movement, time, and
+                    beauty—anchored by a hand-engraved pastoral landscape and a crescent moon complication..
+                </p>
+                <div class="specs">
+                    <h3>Specifications:</h3>
+                    <ul>
+                        <li>Dial Color: Gold</li>
+                        <li>Strap Type: Metal</li>
+                        <li>Movement Type: Automatic</li>
+                        <li>Warranty: 2 Years</li>
+                        <li>Water Resistant: Yes</li>
+                    </ul>
+                    <button class="buy-btn"><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>
+                    <button class="buy-btn"><i class="fa-solid fa-cart-shopping"></i> Buy Now</button>
+                </div>
             </div>
         </div>
 
-        <div class="footer-bottom">
-            <p>© 2025 AURONOX. All rights reserved.</p>
-        </div>
-    </footer>
-    <script>
-        const menu = document.querySelector(".menu");
-        const toggle = document.querySelector(".toggle");
-        toggle.addEventListener("click", () => {
-            menu.classList.toggle("active");
-        })
-    </script>
+        <img id="zoomed-img" class="zoomed" onclick="this.style.display='none'" />
 
-    <script>
-        function changeImage(img) {
-            document.getElementById('main-image').src = img.src;
-            document.querySelectorAll('.thumbnail-list img').forEach(el => el.classList.remove('active'));
-            img.classList.add('active');
-        }
 
-        function zoomImage(src) {
-            const zoomed = document.getElementById('zoomed-img');
-            zoomed.src = src;
-            zoomed.style.display = 'block';
-        }
-    </script>
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="AURONOX Logo" />
+                    <p>Be luxurious always.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <!-- <li><a href="#watches">Everything</a></li> -->
+                        <li><a href="#watches"><a href="index.html">Everything</a></a></li>
+
+                        <!-- <li><a href="#Women"><a href="women.html"></a>Women</a></li> -->
+                        <li><a href="#Women"><a href="women.html">Women</a></a></li>
+                        <!-- <li><a href="#Men"><a href="men.html"></a>Men</a></li> -->
+                        <li><a href="#men"><a href="men.html">Men</a></a></li>
+                        <!-- <li><a href="#Accessories">Accessories</a></li> -->
+                        <li><a href="#Accessories"><a href="Accessories.html">Accessories</a></a></li>
+                        <!-- <li><a href="#CONTACTUS">Contact Us</a></li> -->
+                        <li><a href="#contact"><a href="contact.html">Contact us</a></a></li>
+                        <li><a href="#ADDTOCART"><a href="ADDTOCART.html"> Add to Cart <i
+                                        class="fa-solid fa-cart-shopping"></i></a></a></li>
+                        <!-- <li><a href="#PROFILE"><i class="fa-solid fa-user"></i></a></li> -->
+                        <li><a href="#PROFILE"><a href="profile.html">profile <i class="fa-solid fa-user"></i></a></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="menu">
+                        <div class="toggle">
+                            <ion-icon name="share-social"></ion-icon>
+                        </div>
+                        <li style="--i: 0; --clr: #1877f2">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        </li>
+                        <li style="--i: 1; --clr: #25d366">
+                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        </li>
+                        <li style="--i: 2; --clr: #1b1e21">
+                            <a href="#"><i class="fab fa-x-twitter"></i></a>
+                        </li>
+                        <li style="--i: 3; --clr: #ff5733">
+                            <a href="#"><i class="fab fa-reddit-alien"></i></a>
+                        </li>
+                        <li style="--i: 4; --clr: #0a66c2">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </li>
+                        <li style="--i: 5; --clr: #c32aa3">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </li>
+                        <li style="--i: 6; --clr: #1b1e21">
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </li>
+                        <li style="--i: 7; --clr: #ff0000">
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </li>
+                    </div>
+                    <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js'></script>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 AURONOX. All rights reserved.</p>
+            </div>
+        </footer>
+        <script>
+            const menu = document.querySelector(".menu");
+            const toggle = document.querySelector(".toggle");
+            toggle.addEventListener("click", () => {
+                menu.classList.toggle("active");
+            })
+        </script>
+
+        <!-- <script>
+            function changeImage(img) {
+                document.getElementById('main-image').src = img.src;
+                document.querySelectorAll('.thumbnail-list img').forEach(el => el.classList.remove('active'));
+                img.classList.add('active');
+            }
+
+            function zoomImage(src) {
+                const zoomed = document.getElementById('zoomed-img');
+                zoomed.src = src;
+                zoomed.style.display = 'block';
+            }
+        </script> -->
+
+        <script>
+    function slideTo(index) {
+      const track = document.getElementById('sliderTrack');
+      const imageWidth = track.querySelector('img').clientWidth;
+      track.style.transform = `translateX(-${index * imageWidth}px)`;
+
+      document.querySelectorAll('.thumbnail-list img').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.thumbnail-list img')[index].classList.add('active');
+    }
+
+    // Optional: Adjust position on window resize
+    window.addEventListener('resize', () => {
+      const active = document.querySelector('.thumbnail-list img.active');
+      if (active) {
+        const index = [...active.parentNode.children].indexOf(active);
+        slideTo(index);
+      }
+    });
+  </script>
 
 </body>
 
