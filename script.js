@@ -3,3 +3,8 @@ function toggleMenu() {
     menu.classList.toggle('active');
 }
 
+const hamburger = document.getElementById('hamburger');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+});
