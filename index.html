@@ -5,19 +5,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AURONOX</title>
+    <link rel="shortcut icon" href="logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="scroll.css">
     <link rel="stylesheet" href="watches.css">
     <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="dark.css">
+
     <!-- <link rel="stylesheet" href="women.html"> -->
     <a href="women.html"></a>
-
+    <link rel="stylesheet" href="ADDTOCART.CSS">
+    <script src="ADDTOCART.JS"></script>
 
 
 
 
 <body>
+
     <section class="main">
         <!-- Background Video -->
         <div class="video-container">
@@ -31,6 +36,30 @@
             <div class="image">
                 <img src="logo.png" alt="AURONOX Logo" />
             </div>
+
+            <!-- Cart Toggle Button -->
+            <!-- <button class="cart-toggle-btn" onclick="toggleCart()"></i></button> -->
+
+            <div class="cart-icon" onclick="toggleCart()">
+                🛒 Cart <span id="cart-count">0</span>
+            </div>
+
+            <div id="cart-sidebar" class="cart-sidebar">
+                <h2>Your Cart</h2>
+                <div id="cart-items" class="cart-items"></div>
+                <div class="cart-summary">
+                    <span>Total:</span> ₹<span id="cart-total">0</span>
+                </div>
+                <div class="btns">
+                    <button class="btn-checkout">Checkout</button>
+                    <button class="btn-buy-now">Buy Now</button>
+                </div>
+            </div>
+
+
+            <div id="toast">Item Added to Cart</div>
+
+
             <div class="hamburger" onclick="toggleMenu()">
                 <i class="fas fa-bars"></i>
             </div>
@@ -48,8 +77,6 @@
                 <!-- <li><a href="#CONTACTUS">Contact Us</a></li> -->
                 <li><a href="#contact"><a href="contact.html">Contact us</a></a></li>
                 <!-- <div class="icons"> -->
-                <!-- <li><a href="#ADDTOCART"><i class="fa-solid fa-cart-shopping"></i></a></li> -->
-                <li><a href="#ADDTOCART"><a href="ADDTOCART.html"><i class="fa-solid fa-cart-shopping"></i></a></a></li>
                 <!-- <li><a href="#PROFILE"><i class="fa-solid fa-user"></i></a></li> -->
                 <li><a href="#PROFILE"><a href="profile.html"><i class="fa-solid fa-user"></i></a></a></li>
 
@@ -65,7 +92,7 @@
             <div class="content">
                 <p>Limited Edition</p>
                 <div class="collect">
-                    <p>Collection</p>
+                    <p style="color: yellow;">Collection</p>
                 </div>
                 <p class="p1">Be luxurious</p>
             </div>
@@ -81,19 +108,7 @@
     <section class="scroll" id="scroll">
         <div class="scroller-container">
             <div class="scroller-track" id="scroller-track">
-                <!-- <span class="brand">Rolex</span>
-                <span class="brand">Omega</span>
-                <span class="brand">Seiko</span>
-                <span class="brand">Casio</span>
-                <span class="brand">Tissot</span>
-                <span class="brand">Fossil</span> -->
-                <!-- Clone for infinite loop -->
-                <!-- <span class="brand">Rolex</span>
-                <span class="brand">Omega</span>
-                <span class="brand">Seiko</span>
-                <span class="brand">Casio</span>
-                <span class="brand">Tissot</span>
-                <span class="brand">Fossil</span> -->
+
                 <span class="brand"><img src="download 1.png" alt="download1" /></span>
                 <span class="brand"><img src="download 2.png" alt="download2" /></span>
                 <span class="brand"><img src="download 3.png" alt="download3" /></span>
@@ -112,7 +127,15 @@
     </section>
 
     <section class="watches" id="watches">
-        <h2>Explore Our Watches</h2>
+        <div>
+            <h2>Explore Our Watches</h2>
+            <div>
+                <form action="">
+                    <input type="search" placeholder="Search here ...">
+                    <i class="fa fa-search"></i>
+                </form>
+            </div>
+        </div>
         <div class="watch-grid">
             <!-- <div class="watch-card">
                 <img src="product 4.jpeg" alt="Rolex" />
@@ -120,7 +143,7 @@
                 <p>₹77,500</p>
             </div> -->
             <div class="watch-card">
-                <a href="midnightmechanica.html" target="_blank">
+                <a href="fossil-detail.html" target="_blank">
                     <img src="AURONOX1.jpg" alt="Midnight Mechanica" />
                 </a>
                 <div class="watch-info">
@@ -129,8 +152,8 @@
                     <p class="desc">Luxury diving watch with automatic movement and a timeless design.</p>
                     <!-- <button class="shop-btn"><a href="ADDTOCART.html"></a>Add to Cart</button> -->
                     <!-- <button class="shop-btn" data-name="Classic Watch" data-price="₹77,500.00">Add to Cart</button> -->
-                    <button class="shop-btn addToCartButtons" data-name="Rolex Submariner" data-price="₹77,500"
-                        data-img="images/watch1.jpg">
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w2", name: "Midnight Mechanica", price: 77500, image: "auronox1.jpg"})'>
                         Add to Cart
                     </button>
 
@@ -150,14 +173,18 @@
                 <h3>Omega Seamaster</h3>
                 <p>$5,200</p>
             </div> -->
-            <div class="watch-card">
+            <div class="watch-card" id="1">
                 <img src="AURONOX9.jpg" alt="Titan" />
                 <div class="watch-info">
                     <h3>Titan</h3>
                     <p class="price">₹7,815</p>
                     <p class="desc">Men's Metropolitan Charm: Men's Multifunctional Black Watch with Metallic Accents.
                     </p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w1", name: "tiatan", price: 5499, image: "AURONOX9.jpg"})'>
+                        Add to Cart
+                    </button>
+
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -168,12 +195,15 @@
                 </div>
             </div>
             <div class="watch-card">
-                <img src="AURONOX10.jpg" alt="Jacob & CO" />
+                <img src="AURONOX2.jpg" alt="Jacob & CO" />
                 <div class="watch-info">
                     <h3>Jacob & CO</h3>
                     <p class="price">₹27,00,000</p>
                     <p class="desc">Epic X Titanium Powder Blue Neoralithe Inner Ring (Wonders of India Edition).</p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w3", name: "Jacob & CO", price: 5499, image: "AURONOX2.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -190,7 +220,10 @@
                     <p class="price">₹8,999</p>
                     <p class="desc">Gucci G-Timeless Watch White Dial With Star, Bee & Lions Head Automatic Mens Watch.
                     </p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w4", name: "Jacob & CO", price: 5499, image: "AURONOX3.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -206,7 +239,10 @@
                     <h3>Patek Philippe</h3>
                     <p class="price">₹7,999</p>
                     <p class="desc">Patek Philippe Roman Numeral Dial Brown Leather Strap Men’s Watch.</p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w5", name: "Jacob & CO", price: 5499, image: "AURONOX4.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -217,12 +253,15 @@
                 </div>
             </div>
             <div class="watch-card">
-                <img src="AURONOX8.jpg" alt="ORIS" />
+                <img src="AURONOX5.jpg" alt="ORIS" />
                 <div class="watch-info">
                     <h3>ORIS</h3>
                     <p class="price">₹235,000</p>
                     <p class="desc">Men Aquis Date - 01 733 7766 4150-SET.</p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w5", name: "Jacob & CO", price: 5499, image: "AURONOX5.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -233,12 +272,15 @@
                 </div>
             </div>
             <div class="watch-card">
-                <img src="AURONOX11.jpg" alt="DIESEL" />
+                <img src="AURONOX6.jpg" alt="DIESEL" />
                 <div class="watch-info">
                     <h3>DIESEL</h3>
                     <p class="price">₹21,495</p>
                     <p class="desc">Men Mega Chief Chronograph Watch - DZ4338.</p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w6", name: "Jacob & CO", price: 5499, image: "AURONOX6.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -255,7 +297,10 @@
                     <p class="price">₹26,663
                     </p>
                     <p class="desc">Women's Icona Donna Analogue Watch - RC5L092M0065.</p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w7", name: "Jacob & CO", price: 5499, image: "AURONOX7.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -293,9 +338,10 @@
                     <li><a href="#Accessories"><a href="Accessories.html">Accessories</a></a></li>
                     <!-- <li><a href="#CONTACTUS">Contact Us</a></li> -->
                     <li><a href="#contact"><a href="contact.html">Contact us</a></a></li>
-                    <li><a href="#ADDTOCART"><a href="ADDTOCART.html"> Add to Cart     <i class="fa-solid fa-cart-shopping"></i></a></a></li>
-                <!-- <li><a href="#PROFILE"><i class="fa-solid fa-user"></i></a></li> -->
-                <li><a href="#PROFILE"><a href="profile.html">profile      <i class="fa-solid fa-user"></i></a></a></li>
+                    <li><a href="#ADDTOCART"><a href="ADDTOCART.html"> Add to Cart <i
+                                    class="fa-solid fa-cart-shopping"></i></a></a></li>
+                    <!-- <li><a href="#PROFILE"><i class="fa-solid fa-user"></i></a></li> -->
+                    <li><a href="#PROFILE"><a href="profile.html">profile <i class="fa-solid fa-user"></i></a></a></li>
                 </ul>
             </div>
 
@@ -334,7 +380,6 @@
             </div>
         </div>
 
-
         <div class="footer-bottom">
             <p>© 2025 AURONOX. All rights reserved.</p>
         </div>
@@ -346,8 +391,7 @@
             menu.classList.toggle("active");
         })
     </script>
-
     <script src="script.js"></script>
     <script src="ADDTOCART.JS"></script>
-    <!-- <script src="dark.js"></script> -->
+    <script src="dark.js"></script>
 </body>
