@@ -7,9 +7,70 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="Accessories.css">
     <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="ADDTOCART.CSS">
+    <script src="ADDTOCART.JS"></script>
+    <script src="script.js"></script>
+    
     
 </head>
 <body>
+ <!-- Navbar -->
+        <header class="navbar">
+            <div class="image">
+                <img src="logo.png" alt="AURONOX Logo" />
+            </div>
+
+            <!-- Cart Toggle Button -->
+            <!-- <button class="cart-toggle-btn" onclick="toggleCart()"></i></button> -->
+
+            <div class="cart-icon" onclick="toggleCart()">
+                🛒 Cart <span id="cart-count">0</span>
+            </div>
+
+            <div id="cart-sidebar" class="cart-sidebar">
+                <h2>Your Cart</h2>
+                <div id="cart-items" class="cart-items"></div>
+                <div class="cart-summary">
+                    <span>Total:</span> ₹<span id="cart-total">0</span>
+                </div>
+                <div class="btns">
+                    <button class="btn-checkout">Checkout</button>
+                    <button class="btn-buy-now">Buy Now</button>
+                </div>
+            </div>
+
+
+            <div id="toast">Item Added to Cart</div>
+
+
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul class="nav-menu" id="nav-menu">
+                <!-- <li><a href="#watches">Everything</a></li> -->
+                <li><a href="#watches">Everything<a href="index.html"></a></a></li>
+
+                <li><a href="#Women"><a href="women.html">Women</a></a></li>
+                <!-- <li><a href="#Men"><a href="men.html"></a>Men</a></li> -->
+                <li><a href="#men"><a href="men.html">Men</a></a></li>
+                <!-- <li><a href="#Accessories">Accessories</a></li> -->
+                <li><a href="#Accessories"><a href="Accessories.html">Accessories</a></a></li>
+                <!-- <li><a href="#ABOUT">About</a></li> -->
+                <!-- <li><a href="#CONTACTUS">Contact Us</a></li> -->
+                <li><a href="#contact"><a href="contact.html">Contact us</a></a></li>
+                <!-- <div class="icons"> -->
+                <!-- <li><a href="#PROFILE"><i class="fa-solid fa-user"></i></a></li> -->
+                <li><a href="#PROFILE"><a href="profile.html"><i class="fa-solid fa-user"></i></a></a></li>
+
+                <!-- </div> -->
+            </ul>
+
+
+
+        </header>
+
     <section class="watches" id="watches">
         <div class="banner-image"></div>
 
@@ -22,7 +83,10 @@
                     <h3>Medetai</h3>
                     <p class="price">₹8,599</p>
                     <p class="desc">Automatic Watch Mover/Watch Winder,LT Wooden Automatic Rotation 2+0 Watch Winder Storage Case.</p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w17", name: "tiatan artica", price: 8499, image: "acc 1.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -46,7 +110,10 @@
                     <p class="price">₹9,999</p>
                     <p class="desc">Automatic Watch Winder, Watch Display Box with Quiet Mabuchi Motor, for Man Woman Jewelry Watches.
                     </p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w18", name: "tiatan artica", price: 8499, image: "acc 2.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -62,7 +129,10 @@
                     <h3>FRUCASE</h3>
                     <p class="price">₹9,999</p>
                     <p class="desc">Watch Winder for Automatic Watches Watch Box Automatic Winder Japanese Motor, Black6, FR066BK, Japanese.</p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w19", name: "tiatan artica", price: 8499, image: "acc 3.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -79,7 +149,10 @@
                     <p class="price">₹7,999</p>
                     <p class="desc">Watch Winder, 2 Slots Automatic Watch Winders Box with Serenity Blue Backlight and Memory Foam Pad.
                     </p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w20", name: "tiatan artica", price: 8499, image: "acc 4.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -95,7 +168,10 @@
                     <h3>Rajasthan Gems</h3>
                     <p class="price">₹20,199</p>
                     <p class="desc">Rajasthan Gems Cuff Bracelet Kada 925 Sterling Silver Handmade Hand Engraved Cubic Zirconia.</p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w21", name: "tiatan artica", price: 8499, image: "acc 5.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -111,7 +187,10 @@
                     <h3>MODERN CULTURE</h3>
                     <p class="price">₹13,199</p>
                     <p class="desc">925-92.5 sterling silver beautiful Stylish Design Bracelet Fashion Adjustable Kada Cuff Bracelet for Women and Girls.</p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w22", name: "tiatan artica", price: 8499, image: "acc 6.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -127,7 +206,10 @@
                     <h3>Shyle</h3>
                     <p class="price">₹19,200</p>
                     <p class="desc">Shyle 925 Sterling Silver Bangle/Bracelet, Tattva Ball Cluster Classic Kada,Traditional Silver Jewellery, Oxidized Bangle/Bracelet, Women Hand Accessories.</p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w23", name: "tiatan artica", price: 8499, image: "acc 7.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -144,7 +226,10 @@
                     <p class="price">₹98,026
                     </p>
                     <p class="desc">Diamonds Ring for Women | Natural & Ethically Sourced | Heart & Arrows Pattern | 18kt Gold |  Stylish Design Rings.</p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w24", name: "tiatan artica", price: 8499, image: "acc 8.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
