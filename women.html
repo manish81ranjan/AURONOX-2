@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +9,79 @@
 
     <link rel="stylesheet" href="women.css">
     <link rel="stylesheet" href="footer.css">
-    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="ADDTOCART.CSS">
+    <script src="ADDTOCART.JS"></script>
+    <script src="script.js"></script>
+
 </head>
+
 <body>
+    <!-- Navbar -->
+        <header class="navbar">
+            <div class="image">
+                <img src="logo.png" alt="AURONOX Logo" />
+            </div>
+
+            <!-- Cart Toggle Button -->
+            <!-- <button class="cart-toggle-btn" onclick="toggleCart()"></i></button> -->
+
+            <div class="cart-icon" onclick="toggleCart()">
+                🛒 Cart <span id="cart-count">0</span>
+            </div>
+
+            <div id="cart-sidebar" class="cart-sidebar">
+                <h2>Your Cart</h2>
+                <div id="cart-items" class="cart-items"></div>
+                <div class="cart-summary">
+                    <span>Total:</span> ₹<span id="cart-total">0</span>
+                </div>
+                <div class="btns">
+                    <button class="btn-checkout">Checkout</button>
+                    <button class="btn-buy-now">Buy Now</button>
+                </div>
+            </div>
+
+
+            <div id="toast">Item Added to Cart</div>
+
+
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul class="nav-menu" id="nav-menu">
+                <!-- <li><a href="#watches">Everything</a></li> -->
+                <li><a href="#watches">Everything<a href="index.html"></a></a></li>
+
+                <li><a href="#Women"><a href="women.html">Women</a></a></li>
+                <!-- <li><a href="#Men"><a href="men.html"></a>Men</a></li> -->
+                <li><a href="#men"><a href="men.html">Men</a></a></li>
+                <!-- <li><a href="#Accessories">Accessories</a></li> -->
+                <li><a href="#Accessories"><a href="Accessories.html">Accessories</a></a></li>
+                <!-- <li><a href="#ABOUT">About</a></li> -->
+                <!-- <li><a href="#CONTACTUS">Contact Us</a></li> -->
+                <li><a href="#contact"><a href="contact.html">Contact us</a></a></li>
+                <!-- <div class="icons"> -->
+                <!-- <li><a href="#PROFILE"><i class="fa-solid fa-user"></i></a></li> -->
+                <li><a href="#PROFILE"><a href="profile.html"><i class="fa-solid fa-user"></i></a></a></li>
+
+                <!-- </div> -->
+            </ul>
+
+
+
+        </header>
+
     <section class="watches" id="watches">
         <div class="banner-image"></div>
 
-
+        <!-- <div class="container">
+            <label class="theme-switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider"></span>
+            </label>
+        </div> -->
         <h2>Explore Our Watches for Women</h2>
         <div class="watch-grid">
             <!-- <div class="watch-card">
@@ -23,12 +90,18 @@
                 <p>₹77,500</p>
             </div> -->
             <div class="watch-card">
-                <img src="AURONOX19.jpg" alt="Fossil" />
+                <a href="fossil-detail.html" target="_blank">
+                    <img src="AURONOX19.jpg" alt="Fossil" />
+                </a>
+
                 <div class="watch-info">
                     <h3>Fossil</h3>
                     <p class="price">₹8,746</p>
                     <p class="desc">Fossil Gwen Analogue Women's Watch Gold Dial Womens Standard Colored</p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w9", name: "tiatan artica", price: 8499, image: "AURONOX19.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -37,9 +110,9 @@
                     <i class="fa-solid fa-star-half-stroke"></i>
                     <i class="fa-regular fa-star"></i>
                 </div>
-    
+
             </div>
-    
+
             <!-- <div class="watch-card">
                 <img src="watch2.jpg" alt="Omega" />
                 <h3>Omega Seamaster</h3>
@@ -52,7 +125,10 @@
                     <p class="price">₹1,348</p>
                     <p class="desc">Round Dial Analog Watch for Women|Forest Jade Collection.
                     </p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w10", name: "tiatan artica", price: 8499, image: "AURONOX20.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -67,8 +143,12 @@
                 <div class="watch-info">
                     <h3>Tommy Hilfiger</h3>
                     <p class="price">₹10,320</p>
-                    <p class="desc">Tommy Hilfiger Quartz Analog Rose Gold Dial Stainless Steel Strap Watch for Women.</p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <p class="desc">Tommy Hilfiger Quartz Analog Rose Gold Dial Stainless Steel Strap Watch for Women.
+                    </p>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w11", name: "tiatan artica", price: 8499, image: "AURONOX21.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -83,9 +163,13 @@
                 <div class="watch-info">
                     <h3>Armani </h3>
                     <p class="price">₹8,697</p>
-                    <p class="desc">Armani Exchange Lola Analog Silver Dial and Band Women's Stainless Steel Watch-AX5542.
+                    <p class="desc">Armani Exchange Lola Analog Silver Dial and Band Women's Stainless Steel
+                        Watch-AX5542.
                     </p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w12", name: "tiatan artica", price: 8499, image: "AURONOX22.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -100,8 +184,12 @@
                 <div class="watch-info">
                     <h3>Michael Kors </h3>
                     <p class="price">₹10,797</p>
-                    <p class="desc">Michael Kors Norie Analog White Dial Gold Band Women's Stainless Steel Watch-MK3558.</p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <p class="desc">Michael Kors Norie Analog White Dial Gold Band Women's Stainless Steel Watch-MK3558.
+                    </p>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w13", name: "tiatan artica", price: 8499, image: "AURONOX23.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -116,8 +204,12 @@
                 <div class="watch-info">
                     <h3>Fossil</h3>
                     <p class="price">₹12,495</p>
-                    <p class="desc">Fossil Women Leather Riley Analog White & Beige Dial Watch -Es3466, Band Color-Brown.</p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <p class="desc">Fossil Women Leather Riley Analog White & Beige Dial Watch -Es3466, Band
+                        Color-Brown.</p>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w14", name: "tiatan artica", price: 8499, image: "AURONOX24.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -132,8 +224,12 @@
                 <div class="watch-info">
                     <h3>Swarovski</h3>
                     <p class="price">₹21,000</p>
-                    <p class="desc">Swarovski Stainless Steel Analog Silver Tone Dial Women's Watch-5517807, Band Color-Silver.</p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <p class="desc">Swarovski Stainless Steel Analog Silver Tone Dial Women's Watch-5517807, Band
+                        Color-Silver.</p>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w15", name: "tiatan artica", price: 8499, image: "AURONOX25.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -150,7 +246,10 @@
                     <p class="price">₹26,663
                     </p>
                     <p class="desc">Women's Icona Donna Analogue Watch - RC5L092M0065.</p>
-                    <button class="shop-btn">Add to Cart</button>
+                    <button class="shop-btn"
+                        onclick='addToCart({id: "w16", name: "tiatan artica", price: 8499, image: "AURONOX26.jpg"})'>
+                        Add to Cart
+                    </button>
                 </div>
                 <div class="star-rating">
                     <i class="fa-solid fa-star"></i>
@@ -162,9 +261,9 @@
             </div>
         </div>
     </section>
-    
+
     <!-- footer -->
-    
+
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-logo">
@@ -176,18 +275,17 @@
                 <h4>Quick Links</h4>
                 <ul>
                     <!-- <li><a href="#watches">Everything</a></li> -->
-                <li><a href="#watches"><a href="index.html">Everything</a></a></li>
+                    <li><a href="#watches"><a href="index.html">Everything</a></a></li>
                     <!-- <li><a href="#Women"><a href="women.html"></a>Women</a></li> -->
                     <li><a href="#Women"><a href="women.html">Women</a></a></li>
                     <!-- <li><a href="#Men"><a href="men.html"></a>Men</a></li> -->
                     <li><a href="#men"><a href="men.html">Men</a></a></li>
                     <!-- <li><a href="#Accessories">Accessories</a></li> -->
-                <li><a href="#Accessories"><a href="Accessories.html">Accessories</a></a></li>
+                    <li><a href="#Accessories"><a href="Accessories.html">Accessories</a></a></li>
                     <!-- <li><a href="#CONTACTUS">Contact Us</a></li> -->
                     <li><a href="#contact"><a href="contact.html">Contact us</a></a></li>
-                <li><a href="#ADDTOCART"><a href="ADDTOCART.html"> Add to Cart     <i class="fa-solid fa-cart-shopping"></i></a></a></li>
-                <!-- <li><a href="#PROFILE"><i class="fa-solid fa-user"></i></a></li> -->
-                <li><a href="#PROFILE"><a href="profile.html">profile      <i class="fa-solid fa-user"></i></a></a></li>
+                    <!-- <li><a href="#PROFILE"><i class="fa-solid fa-user"></i></a></li> -->
+                    <li><a href="#PROFILE"><a href="profile.html">profile <i class="fa-solid fa-user"></i></a></a></li>
                 </ul>
             </div>
 
@@ -209,4 +307,5 @@
     <!-- <script src="ADDTOCART.JS"></script> -->
 
 </body>
+
 </html>
