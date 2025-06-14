@@ -8,9 +8,68 @@
 
     <link rel="stylesheet" href="men.css">
     <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="ADDTOCART.CSS">
+    <script src="ADDTOCART.JS"></script>
+    <script src="script.js"></script>
     
 </head>
 <body>
+    <!-- Navbar -->
+        <header class="navbar">
+            <div class="image">
+                <img src="logo.png" alt="AURONOX Logo" />
+            </div>
+
+            <!-- Cart Toggle Button -->
+            <!-- <button class="cart-toggle-btn" onclick="toggleCart()"></i></button> -->
+
+            <div class="cart-icon" onclick="toggleCart()">
+                🛒 Cart <span id="cart-count">0</span>
+            </div>
+
+            <div id="cart-sidebar" class="cart-sidebar">
+                <h2>Your Cart</h2>
+                <div id="cart-items" class="cart-items"></div>
+                <div class="cart-summary">
+                    <span>Total:</span> ₹<span id="cart-total">0</span>
+                </div>
+                <div class="btns">
+                    <button class="btn-checkout">Checkout</button>
+                    <button class="btn-buy-now">Buy Now</button>
+                </div>
+            </div>
+
+
+            <div id="toast">Item Added to Cart</div>
+
+
+            <div class="hamburger" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul class="nav-menu" id="nav-menu">
+                <!-- <li><a href="#watches">Everything</a></li> -->
+                <li><a href="#watches">Everything<a href="index.html"></a></a></li>
+
+                <li><a href="#Women"><a href="women.html">Women</a></a></li>
+                <!-- <li><a href="#Men"><a href="men.html"></a>Men</a></li> -->
+                <li><a href="#men"><a href="men.html">Men</a></a></li>
+                <!-- <li><a href="#Accessories">Accessories</a></li> -->
+                <li><a href="#Accessories"><a href="Accessories.html">Accessories</a></a></li>
+                <!-- <li><a href="#ABOUT">About</a></li> -->
+                <!-- <li><a href="#CONTACTUS">Contact Us</a></li> -->
+                <li><a href="#contact"><a href="contact.html">Contact us</a></a></li>
+                <!-- <div class="icons"> -->
+                <!-- <li><a href="#PROFILE"><i class="fa-solid fa-user"></i></a></li> -->
+                <li><a href="#PROFILE"><a href="profile.html"><i class="fa-solid fa-user"></i></a></a></li>
+
+                <!-- </div> -->
+            </ul>
+
+
+
+        </header>
     <section class="watches" id="watches">
         <div class="banner-image"></div>
 
