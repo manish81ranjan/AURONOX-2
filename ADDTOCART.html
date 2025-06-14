@@ -1,193 +1,254 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add to Cart Demo</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="ADDTOCART.CSS">
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar Cart</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
 
+    /* Sidebar Styles */
+    .cart-sidebar {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 360px;
+      max-width: 100%;
+      height: 100vh;
+      background: #fff;
+      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+      transition: right 0.3s ease-in-out;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .cart-sidebar.open {
+      right: 0;
+    }
+
+    .cart-header {
+      padding: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .cart-item img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-right: 15px;
+    }
+
+    .cart-item-details {
+      flex: 1;
+    }
+
+    .cart-item-details h4 {
+      margin: 0 0 5px;
+      font-size: 16px;
+    }
+
+    .cart-item-details .price {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quantity-controls button {
+      width: 24px;
+      height: 24px;
+      background: #eee;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .remove-btn {
+      background: none;
+      border: none;
+      color: red;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    .cart-footer {
+      padding: 20px;
+      border-top: 1px solid #ddd;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .cart-footer-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .cart-footer-buttons button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 6px;
+    }
+
+    .buy-now {
+      background-color: #111;
+      color: white;
+    }
+
+    .checkout {
+      background-color: #ff9800;
+      color: white;
+    }
+
+    .cart-toggle-btn {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      padding: 10px 20px;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
 <body>
 
-    <!-- Cart icon at top right -->
-    <header>
-        <!-- <div class="cart-container">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="cart-count" >0</span>
-        </div> -->
+<!-- Cart Toggle Button -->
+<button class="cart-toggle-btn" onclick="toggleCart()">Cart</button>
 
-        <div class="cart-layout">
-            <!-- Left: Product Listing -->
-            <div class="product-section">
-                <h2>Our Watches</h2>
-                <div class="product-list" id="productList">
-                    <!-- Your existing product cards will go here -->
-                    <!-- Place all your watch-card elements here -->
-                    <section class="products">
-                        <div class="watch-grid">
-                            <div class="watch-card">
-                                <img src="product 4.jpeg" alt="Rolex Submariner" />
-                                <div class="watch-info">
-                                    <h3>Rolex Submariner</h3>
-                                    <p class="price">₹77,500</p>
-                                    <p class="desc">Luxury diving watch with automatic movement and a timeless design.
-                                    </p>
-                                    <button class="shop-btn">Add to Cart</button>
-                                </div>
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star-half-stroke"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                </div>
+<!-- Cart Sidebar -->
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    CART
+    <span onclick="toggleCart()" style="cursor:pointer">&times;</span>
+  </div>
 
-                            </div>
-                            <div class="watch-card">
-                                <img src="product 5.webp" alt="Titan" />
-                                <div class="watch-info">
-                                    <h3>Titan</h3>
-                                    <p class="price">₹7,815</p>
-                                    <p class="desc">Men's Metropolitan Charm: Men's Multifunctional Black Watch with
-                                        Metallic Accents.
-                                    </p>
-                                    <button class="shop-btn">Add to Cart</button>
-                                </div>
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star-half-stroke"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="watch-card">
-                                <img src="product 7.avif" alt="Jacob & CO" />
-                                <div class="watch-info">
-                                    <h3>Jacob & CO</h3>
-                                    <p class="price">₹27,00,000</p>
-                                    <p class="desc">Epic X Titanium Powder Blue Neoralithe Inner Ring (Wonders of India
-                                        Edition).</p>
-                                    <button class="shop-btn">Add to Cart</button>
-                                </div>
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="watch-card">
-                                <img src="product 8.jpeg" alt="Gucci" />
-                                <div class="watch-info">
-                                    <h3>Gucci</h3>
-                                    <p class="price">₹8,999</p>
-                                    <p class="desc">Gucci G-Timeless Watch White Dial With Star, Bee & Lions Head
-                                        Automatic Mens Watch.
-                                    </p>
-                                    <button class="shop-btn">Add to Cart</button>
-                                </div>
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="watch-card">
-                                <img src="product 10.jpg" alt="Patek Philippe" />
-                                <div class="watch-info">
-                                    <h3>Patek Philippe</h3>
-                                    <p class="price">₹7,999</p>
-                                    <p class="desc">Patek Philippe Roman Numeral Dial Brown Leather Strap Men’s Watch.
-                                    </p>
-                                    <button class="shop-btn">Add to Cart</button>
-                                </div>
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="watch-card">
-                                <img src="product 12.avif" alt="ORIS" />
-                                <div class="watch-info">
-                                    <h3>ORIS</h3>
-                                    <p class="price">₹235,000</p>
-                                    <p class="desc">Men Aquis Date - 01 733 7766 4150-SET.</p>
-                                    <button class="shop-btn">Add to Cart</button>
-                                </div>
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star-half-stroke"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="watch-card">
-                                <img src="product 13.avif" alt="DIESEL" />
-                                <div class="watch-info">
-                                    <h3>DIESEL</h3>
-                                    <p class="price">₹21,495</p>
-                                    <p class="desc">Men Mega Chief Chronograph Watch - DZ4338.</p>
-                                    <button class="shop-btn">Add to Cart</button>
-                                </div>
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star-half-stroke"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="watch-card">
-                                <img src="product 14.avif" alt="ROBERTO CAVALLI" />
-                                <div class="watch-info">
-                                    <h3>ROBERTO CAVALLI</h3>
-                                    <p class="price">₹26,663
-                                    </p>
-                                    <p class="desc">Women's Icona Donna Analogue Watch - RC5L092M0065.</p>
-                                    <button class="shop-btn">Add to Cart</button>
-                                </div>
-                                <div class="star-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star-half-stroke"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+  <div class="cart-items" id="cartItems">
+    <!-- JS Injected Items -->
+  </div>
+
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Total:</span>
+      <span id="cartTotal">₹0</span>
+    </div>
+    <div class="cart-footer-buttons">
+      <button class="buy-now">Buy Now</button>
+      <button class="checkout">Checkout</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  const sampleProduct = {
+    id: 1,
+    title: "WHITE Oud Unisex Perfume - 100ml",
+    price: 565,
+    img: "https://bellavitaorganic.com/cdn/shop/products/WHITEOUD.jpg",
+    qty: 1
+  };
+
+  function toggleCart() {
+    document.getElementById("cartSidebar").classList.toggle("open");
+    renderCart();
+  }
+
+  function renderCart() {
+    const container = document.getElementById("cartItems");
+    container.innerHTML = "";
+    let total = 0;
+    cart.forEach(item => {
+      total += item.price * item.qty;
+      container.innerHTML += `
+        <div class="cart-item">
+          <img src="${item.img}" alt="${item.title}">
+          <div class="cart-item-details">
+            <h4>${item.title}</h4>
+            <div class="price">₹${item.price}</div>
+            <div class="quantity-controls">
+              <button onclick="updateQty(${item.id}, -1)">-</button>
+              <span>${item.qty}</span>
+              <button onclick="updateQty(${item.id}, 1)">+</button>
+              <button class="remove-btn" onclick="removeItem(${item.id})">&times;</button>
             </div>
-
-            <!-- Right: Cart Summary -->
-            <!-- <div class="cart-summary">
-                <h2>Your Cart (<span class="cart-count">0</span>)</h2>
-                <ul class="cart-items" id="cartItems"></ul>
-            </div> -->
-            <div class="cart-summary">
-                <h2>Your Cart (<span class="cart-count">0</span>)</h2>
-                <ul class="cart-items" id="cartItems"></ul>
-                <div class="cart-total">
-                    <hr />
-                    <h3>Total: ₹<span id="totalAmount">0</span></h3>
-                </div>
-            </div>
-
+          </div>
         </div>
+      `;
+    });
+    document.getElementById("cartTotal").innerText = `₹${total}`;
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
 
-    </header>
-    <script src="ADDTOCART.JS"></script>
+  function updateQty(id, change) {
+    cart = cart.map(item => item.id === id ? { ...item, qty: Math.max(1, item.qty + change) } : item);
+    renderCart();
+  }
+
+  function removeItem(id) {
+    cart = cart.filter(item => item.id !== id);
+    renderCart();
+  }
+
+  // Add to cart sample function for demo purpose
+  function addToCart(product) {
+    const found = cart.find(item => item.id === product.id);
+    if (found) {
+      found.qty += 1;
+    } else {
+      cart.push({ ...product });
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    toggleCart();
+  }
+
+  // Auto add 1 item for demo on load
+  window.onload = () => {
+    if (!cart.length) {
+      addToCart(sampleProduct);
+    }
+    renderCart();
+  };
+</script>
+
 </body>
-
 </html>
