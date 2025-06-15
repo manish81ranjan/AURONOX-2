@@ -48,7 +48,7 @@
 
     a {
       text-decoration: none;
-      color: white
+      color: rgb(255, 255, 255)
     }
 
     /* UTILITIES */
@@ -796,7 +796,7 @@
       <h1 class="product-title">Auronox - Furia
         <button class="wishlist-btn" id="wishlist-btn"><i class="fa-solid fa-heart"></i></button>
       </h1>
-      <div class="rating"><span>⭐ 4.8</span><span>|</span><a href="#reviews">927 Reviews</a></div>
+      <div class="rating" ><span>⭐ 4.8</span><span>|</span><a style="color: #000;" href="#reviews">927 Reviews</a></div>
 
       <div class="countdown"><i class="fa-solid fa-bolt"></i> Deal ends in <span id="countdown-timer">--:--:--</span>
       </div>
@@ -804,8 +804,8 @@
         masterpiece captures the soul of micro-mechanical engineering, encased in a sculpted body ofobsidian black and
         deep gold.</h3>
       <div class="price">
-        <div class="current">₹7,815</div>
-        <div class="original">₹14,999</div>
+        <div class="current">₹2,499</div>
+        <div class="original">₹4,999</div>
         <div class="discount">50% OFF</div>
       </div>
 
@@ -836,9 +836,9 @@
   <section class="offers">
     <h2 style="font-size:1.3rem;font-weight:600;margin-bottom:1rem">Exclusive Offers</h2>
     <div class="offer-cards">
-      <div class="offer-card">Buy 2 Watches for ₹3,999</div>
+      <div class="offer-card">Buy 2 Watches for ₹30,999</div>
       <div class="offer-card">Get a Free Strap on Orders Above ₹3,000</div>
-      <div class="offer-card">Flat 10% OFF with Code <b>AURONOX10</b></div>
+      <div class="offer-card">Flat 10% OFF with Code <b>AURONOX9</b></div>
     </div>
   </section>
 
@@ -1125,7 +1125,7 @@
       let cart = LS.get(CART_KEY, []);
       const productId = 'chrono-black-42';
       const existing = cart.find(p => p.id === productId);
-      if (existing) existing.qty += +qtyInput.value; else cart.push({ id: productId, name: 'AURONOX Chrono – Sapphire Black', price: 2499, img: mainImage.src, qty: +qtyInput.value });
+      if (existing) existing.qty += +qtyInput.value; else cart.push({ id: productId, name: 'Auronox-Furia', price: 7815, img: mainImage.src, qty: +qtyInput.value });
       LS.set(CART_KEY, cart); renderCart(); alert('Added to cart ✔');
       document.getElementById('buy-now').classList.remove('hidden');
       document.getElementById('add-to-cart').classList.add('hidden');
