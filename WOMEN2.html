@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AURONOX Chrono Series – Product Page</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/yourKitId.js" crossorigin="anonymous" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+
+    <style>
+        /* RESET & BASE */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #3f2e2e;
+            background: #fafafa;
+            line-height: 1.5;
+            margin: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            display: block
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit
+        }
+
+        a {
+            text-decoration: none;
+            color: rgb(255, 255, 255)
+        }
+
+        /* UTILITIES */
+        .container {
+            width: min(1475px, 100%);
+            margin-inline: auto
+        }
+
+        .flex {
+            display: flex;
+            gap: 1rem
+        }
+
+        .grid {
+            display: grid;
+            gap: 1rem
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: .9rem 2rem;
+            border: 0;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background .3s ease
+        }
+
+        .btn-primary {
+            background: #000;
+            color: #fff
+        }
+
+        .btn-primary:hover {
+            background: #222
+        }
+
+        .btn-outline {
+            background: #fff;
+            border: 1px solid #000
+        }
+
+        .btn-outline:hover {
+            background: #f3f4f6
+        }
+
+        .shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .07)
+        }
+
+        .hidden {
+            display: none !important
+        }
+
+        /* HEADER */
+        header {
+            position: sticky;
+            top: 0;
+            background: #403d3d;
+            z-index: 100;
+            border-bottom: 1px solid #e5e7eb
+        }
+
+        nav a {
+            font-weight: 500;
+            position: relative;
+            padding: .5rem 0
+        }
+
+        nav a.active::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #000
+        }
+
+        /* HERO */
+        .product-hero {
+            margin-top: 2rem;
+            gap: 3rem
+        }
+
+        .product-hero__image {
+            flex: 1 1 50%;
+            position: relative
+        }
+
+        .thumbs {
+            margin-top: 1rem;
+            display: flex;
+            gap: .5rem;
+            overflow-x: auto
+        }
+
+        .thumbs img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            cursor: pointer
+        }
+
+        .thumbs img.active {
+            border-color: #000
+        }
+
+        .zoom-wrapper {
+            position: relative;
+            overflow: hidden
+        }
+
+        .zoom-wrapper:hover img {
+            transform: scale(1.3)
+        }
+
+        .zoom-wrapper img {
+            transition: transform .35s ease
+        }
+
+        .product-hero__info {
+            flex: 1 1 45%
+        }
+
+        .product-title {
+            font-size: clamp(1.6rem, 2.5vw, 2rem);
+            font-weight: 700;
+            margin-bottom: .5rem;
+            display: flex;
+            align-items: center;
+            gap: .75rem
+        }
+
+        .wishlist-btn {
+            background: none;
+            border: 0;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #d1d5db;
+            transition: color .3s
+        }
+
+        .wishlist-btn.active {
+            color: #dc2626
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-weight: 500;
+            margin-bottom: .75rem
+        }
+
+        .rating span {
+            font-weight: 600
+        }
+
+        .price {
+            display: flex;
+            align-items: flex-end;
+            gap: .5rem;
+            margin: .75rem 0
+        }
+
+        .price .current {
+            font-size: 1.75rem;
+            font-weight: 700
+        }
+
+        .price .original {
+            text-decoration: line-through;
+            color: #777
+        }
+
+        .price .discount {
+            color: #16a34a;
+            font-weight: 600
+        }
+
+        .qty-selector {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0
+        }
+
+        .qty-selector button {
+            background: #f5f5f5;
+            border: 0;
+            width: 38px;
+            height: 38px;
+            font-size: 1.2rem;
+            cursor: pointer
+        }
+
+        .qty-selector input {
+            width: 50px;
+            text-align: center;
+            border: 0;
+            height: 38px
+        }
+
+        /* COUNTDOWN */
+        .countdown {
+            margin: 1rem 0;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #dc2626
+        }
+
+        /* OFFERS */
+        .offers {
+            margin: 3rem 0
+        }
+
+        .offer-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem
+        }
+
+        .offer-card {
+            padding: 1.25rem;
+            border: 1px dashed #ccc;
+            border-radius: 8px;
+            background: #fff;
+            text-align: center;
+            font-weight: 500
+        }
+
+        /* REVIEWS */
+        .reviews {
+            margin: 4rem 0
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem
+        }
+
+        .avg-score {
+            font-size: 3rem;
+            font-weight: 700
+        }
+
+        .bar-list {
+            display: grid;
+            gap: .4rem
+        }
+
+        .bar {
+            display: flex;
+            align-items: center;
+            gap: .4rem
+        }
+
+        .bar-label {
+            width: 60px;
+            font-size: .85rem
+        }
+
+        .bar-track {
+            flex: 1;
+            background: #e5e7eb;
+            height: 8px;
+            border-radius: 3px;
+            overflow: hidden
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: #facc15
+        }
+
+        .review-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem
+        }
+
+        .single-review {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1rem
+        }
+
+        .single-review header {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-weight: 600;
+            margin-bottom: .5rem;
+            color: #ffffff;
+        }
+
+        .single-review p {
+            margin-top: .25rem
+        }
+
+        #load-more {
+            margin: 1.5rem auto 0
+        }
+
+        /* REVIEW MODAL */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 200
+        }
+
+        .modal-box {
+            background: #fff;
+            border-radius: 10px;
+            padding: 2rem;
+            width: min(450px, 90%);
+            max-height: 90vh;
+            overflow-y: auto
+        }
+
+        .star-group {
+            display: flex;
+            gap: .4rem;
+            margin-bottom: 1rem;
+            font-size: 1.4rem
+        }
+
+        .star-group input {
+            display: none
+        }
+
+        .star-group label {
+            cursor: pointer;
+            color: #d1d5db;
+            transition: color .2s
+        }
+
+        .star-group input:checked~label {
+            color: #facc15
+        }
+
+        .star-group label:hover,
+        .star-group label:hover~label {
+            color: #facc15
+        }
+
+        /* CART DRAWER */
+        #cart-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 360px;
+            max-width: 90%;
+            height: 100%;
+            background: #fff;
+            box-shadow: -4px 0 15px rgba(0, 0, 0, .05);
+            transform: translateX(100%);
+            transition: transform .35s ease;
+            z-index: 150;
+            display: flex;
+            flex-direction: column
+        }
+
+        #cart-drawer.open {
+            transform: translateX(0)
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem
+        }
+
+        .cart-item {
+            display: flex;
+            gap: .75rem
+        }
+
+        .cart-item img {
+            width: 65px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 6px
+        }
+
+        .cart-item .info {
+            flex: 1
+        }
+
+        .cart-item .qty-controls {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: .4rem
+        }
+
+        .cart-item .qty-controls button {
+            background: #f3f4f6;
+            border: 0;
+            width: 30px;
+            height: 30px;
+            font-size: 1rem;
+            cursor: pointer
+        }
+
+        .cart-item .qty-controls input {
+            width: 36px;
+            text-align: center;
+            border: 0;
+            height: 30px
+        }
+
+        .cart-footer {
+            padding: 1rem;
+            border-top: 1px solid #e5e7eb
+        }
+
+        /* YOU MAY ALSO LIKE */
+        .recommendations {
+            margin: 4rem 0
+        }
+
+        .recommend-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem
+        }
+
+        .rec-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+            align-items: center;
+            text-align: center
+        }
+
+        .rec-card img {
+            width: 274px;
+            height: 312px;
+            object-fit: cover;
+            border-radius: 6px
+        }
+
+        .rec-card .price {
+            gap: .4rem;
+            font-size: 1rem;
+            margin: 0
+        }
+
+        /* DETAILS COLLAPSE */
+        details {
+            border-top: 1px solid #e5e7eb;
+            padding: 1rem 0
+        }
+
+        details[open] summary {
+            font-weight: 600
+        }
+
+        summary {
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 500
+        }
+
+        summary::-webkit-details-marker {
+            display: none
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, .55);
+            color: #fff;
+            border: none;
+            width: 91px;
+            height: 88px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background .25s;
+        }
+
+        .arrow:hover {
+            background: rgba(0, 0, 0, .8);
+        }
+
+        .arrow.prev {
+            left: -2px;
+        }
+
+        .arrow.next {
+            right: -2px;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:768px) {
+            .product-hero {
+                flex-direction: column
+            }
+        }
+
+        /* ——— NAV / HAMBURGER ——— */
+        .nav-wrapper {
+            gap: 1.25rem;
+            align-items: center;
+        }
+
+        /* hide burger on desktop */
+        .hamburger {
+            font-size: 1.6rem;
+            background: none;
+            border: 0;
+            cursor: pointer;
+            color: #ffffff;
+            display: none;
+            /* default hidden */
+        }
+
+        /* link list looks normal on desktop */
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 1.25rem;
+            align-items: center;
+        }
+
+        /* ——— mobile only styles ——— */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            /* show burger */
+            .nav-menu {
+                /* turn into panel */
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 260px;
+                height: 60%;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 4rem 1.5rem;
+                background: #000000;
+                box-shadow: -4px 0 15px rgba(0, 0, 0, .05);
+                transform: translateX(100%);
+                /* hidden by default */
+                transition: transform .3s ease;
+            }
+
+            .nav-menu.show {
+                transform: translateX(0);
+            }
+
+            /* slide‑in */
+            .nav-menu li {
+                width: 100%;
+                margin-bottom: 1.25rem;
+            }
+
+            .nav-menu a {
+                font-size: 1.05rem;
+            }
+        }
+
+        .hamburger i {
+            pointer-events: none;
+        }
+
+        /* clicks pass through icon */
+
+        /* keep link panel code you already added … plus: */
+        .hamburger {
+            font-size: 1.6rem;
+            background: none;
+            border: 0;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        .hamburger i {
+            pointer-events: none;
+            transition: transform .3s ease;
+        }
+
+        /* optional: little rotation on open */
+        .hamburger.open i {
+            transform: rotate(90deg);
+        }
+
+        /* same hamburger style */
+        .hamburger,
+        .close-btn {
+            font-size: 1.6rem;
+            background: none;
+            border: 0;
+            cursor: pointer;
+            color: #ffffff;
+        }
+
+        /* hide both buttons on desktop */
+        .hamburger,
+        .close-btn {
+            display: none;
+        }
+
+        /* fixed close button sits on top of everything */
+        .close-btn {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1100;
+            /* above nav panel */
+        }
+
+        /* mobile view */
+        @media (max-width:768px) {
+            .hamburger {
+                display: block;
+            }
+
+            /* show ☰ by default */
+        }
+
+
+        .btn-group {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+        }
+
+        #buy-now {
+            border-color: #000;
+        }
+
+        /* outline style */
+        .hidden {
+            display: none !important;
+        }
+
+        /* hero button pair */
+        .btn-group {
+            display: flex;
+            gap: .5rem;
+            flex-wrap: wrap;
+        }
+
+        /* drawer footer pair */
+        .cart-footer-btns {
+            display: flex;
+            gap: .5rem;
+            margin-top: .75rem;
+        }
+
+        .cart-footer-btns .btn {
+            flex: 1;
+        }
+
+        /* utility */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ===== HEADER ===== -->
+    <header class="container flex" style="justify-content:space-between;align-items:center;padding:1rem 14px">
+        <h2 style=" color: #ffffff; font-weight:700 ">AURONOX</h2>
+        <!-- <nav class="flex nav-wrapper"> -->
+        <!-- ☰ hamburger -->
+        <button id="hamburger" class="hamburger" aria-label="Open menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- × close button (hidden by default) -->
+        <button id="close-menu" class="close-btn" aria-label="Close menu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <!-- slide‑in panel -->
+        <ul id="nav-menu" class="nav-menu">
+            <li><a href="index.html">Everything</a></li>
+            <li><a href="women.html">Women</a></li>
+            <li><a href="men.html">Men</a></li>
+            <li><a href="Accessories.html">Accessories</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <a href="#" id="wishlist-link"><i class="fa-regular fa-heart"></i><span id="wishlist-count">0</span></a>
+            <a href="#" id="cart-icon" class="flex" style="gap:.4rem"><i class="fa-solid fa-cart-shopping"></i><span
+                    id="cart-count">0</span></a>
+        </ul>
+
+        <!-- icons always visible -->
+
+        </nav>
+
+
+    </header>
+
+    <!-- <main class="container">
+    <!-- ===== HERO SECTION ===== -->
+    <section class="product-hero flex">
+        <div class="product-hero__image">
+            <div class="zoom-wrapper shadow" id="zoom-wrapper">
+                <button class="arrow prev"><i class="fa-solid fa-chevron-left"></i></button>
+                <img id="main-image" src="AURONOX20.jpg" alt="AURONOX Chrono Watch" />
+                <button class="arrow next"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <div class="thumbs" id="thumbs">
+                <img class="active" src="AURONOX20.jpg" alt="thumb1" />
+                <img src="AURONOX20.1.jpg" alt="thumb2" />
+                <img src="AURONOX20.2.jpg" alt="thumb3" />
+                <img src="AURONOX20.3.jpg" alt="thumb4" />
+            </div>
+        </div> -->
+
+        <div class="product-hero__info">
+            <h1 class="product-title">Auronox-Ayana
+                <button class="wishlist-btn" id="wishlist-btn"><i class="fa-solid fa-heart"></i></button>
+            </h1>
+            <div class="rating"><span>⭐ 4.8</span><span>|</span><a style="color: #000;" href="#reviews">927 Reviews</a>
+            </div>
+
+            <div class="countdown"><i class="fa-solid fa-bolt"></i> Deal ends in <span
+                    id="countdown-timer">--:--:--</span>
+            </div>
+            <h3>Unleash your inner power with the Auronox Regulus, a luxury timepiece sculpted in rose gold and crowned with a roaring lion centerpiece.Its skeletonized dial reveals intricate mechanics, while the exhibition caseback showcases a lion-shaped rotor in motion.More than a watch, it is a bold declaration of strength, precision, and timeless elegance.
+            </h3>
+            <div class="price">
+                <div class="current">₹10,999</div>
+                <div class="original">₹20,999</div>
+                <div class="discount">50% OFF</div>
+            </div>
+
+            <div class="qty-selector">
+                <button id="minus-btn">-</button>
+                <input type="number" id="qty-input" value="1" min="1" />
+                <button id="plus-btn">+</button>
+            </div>
+
+
+
+            <div class="btn-group">
+                <button class="btn btn-primary" id="add-to-cart">Add to Cart</button>
+                <button class="btn btn-primary" id="add-to-cart">BUY NOW</button>
+                <button class="btn btn-outline hidden" id="buy-now">Checkout</button>
+            </div>
+
+
+            <div class="flex" style="margin-top:1.5rem;gap:1.5rem;flex-wrap:wrap;font-size:.95rem">
+                <span><i class="fa-regular fa-hourglass-half"></i> 5 ATM Water‑Resistant</span>
+                <span><i class="fa-solid fa-shield-heart"></i> 2‑Year Warranty</span>
+                <span><i class="fa-solid fa-feather"></i> Genuine Leather Strap</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== OFFERS ===== -->
+    <section class="offers">
+        <h2 style="font-size:1.3rem;font-weight:600;margin-bottom:1rem">Exclusive Offers</h2>
+        <div class="offer-cards">
+            <div class="offer-card">Buy 2 Watches for ₹18,999</div>
+            <div class="offer-card">Get a Free Strap on Orders Above ₹3,000</div>
+            <div class="offer-card">Flat 10% OFF with Code <b>AURONOX9</b></div>
+        </div>
+    </section>
+
+    <!-- ===== COLLAPSIBLE DETAILS ===== -->
+    <section class="product-info">
+        <details open>
+            <summary>Key Features <i class="fa-solid fa-plus"></i></summary>
+            <p style="margin-top:.75rem">Japanese Quartz movement, scratch‑resistant sapphire glass, luminous hands &
+                indices, and 5 ATM water resistance for everyday durability.</p>
+        </details>
+        <details>
+            <summary>Specifications <i class="fa-solid fa-plus"></i></summary>
+            <ul style="margin:.75rem 0 0 1.25rem;display:grid;gap:.2rem">
+                <li>Case Diameter: 42 mm</li>
+                <li>Case Thickness: 10 mm</li>
+                <li>Strap: 22 mm genuine leather</li>
+                <li>Movement: Miyota JS26</li>
+                <li>Water Resistance: 50 m (5 ATM)</li>
+            </ul>
+        </details>
+        <details>
+            <summary>Warranty & Care <i class="fa-solid fa-plus"></i></summary>
+            <p style="margin-top:.75rem">We offer a 2‑year international warranty on the movement. Avoid exposure to
+                strong
+                magnetic fields and wash with mild soap after salt‑water contact.</p>
+        </details>
+    </section>
+
+    <!-- ===== REVIEWS ===== -->
+    <section id="reviews" class="reviews">
+        <div class="review-header">
+            <div class="avg-score">
+                4.76 <span style="font-size:1rem;font-weight:500">/ 5</span>
+                <div style="font-size:1rem;font-weight:500">Based on 927 reviews</div>
+            </div>
+            <div class="bar-list" style="min-width:250px;flex:1">
+                <!-- Rating bars → static stub -->
+                <div class="bar">
+                    <div class="bar-label">5 ⭐</div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width:78%"></div>
+                    </div>
+                    <div>724</div>
+                </div>
+                <div class="bar">
+                    <div class="bar-label">4 ⭐</div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width:20%"></div>
+                    </div>
+                    <div>188</div>
+                </div>
+                <div class="bar">
+                    <div class="bar-label">3 ⭐</div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width:1.5%"></div>
+                    </div>
+                    <div>13</div>
+                </div>
+                <div class="bar">
+                    <div class="bar-label">2 ⭐</div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width:0%"></div>
+                    </div>
+                    <div>0</div>
+                </div>
+                <div class="bar">
+                    <div class="bar-label">1 ⭐</div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width:.2%"></div>
+                    </div>
+                    <div>2</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-feed" id="review-feed"></div>
+        <button class="btn btn-outline" id="load-more" style="display:none">Load More</button>
+        <br>
+        <button class="btn btn-primary" id="open-review-modal">Write a Review</button>
+    </section>
+
+    <!-- ===== YOU MAY ALSO LIKE ===== -->
+    <section class="recommendations">
+        <h2 style="font-size:1.3rem;font-weight:600;margin-bottom:1rem">You May Also Like</h2>
+        <div class="recommend-grid" id="rec-grid"></div>
+    </section>
+    </main>
+
+    <!-- ===== CART DRAWER ===== -->
+    <aside id="cart-drawer">
+        <div class="cart-header">
+            <h3>My Cart (<span id="cart-count-drawer">0</span>)</h3><button id="close-cart"><i
+                    class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-footer"><strong>Total: ₹<span id="cart-total">0</span></strong>
+            <div style="display: flex;justify-content: space-around;">
+                <button class="btn btn-primary" style="width:100%;margin-top:.75rem">Checkout</button>
+            </div>
+            <button class="btn btn-primary" style="width:100%;margin-top:.75rem">Buy now</button>
+        </div>
+        </div>
+    </aside>
+
+    <!-- ===== REVIEW MODAL ===== -->
+    <div class="modal hidden" id="review-modal">
+        <div class="modal-box">
+            <h3 style="font-weight:600;margin-bottom:1rem">Write a Review</h3>
+            <form id="review-form" class="grid" style="gap:1rem">
+                <div class="star-group">
+                    <!-- 5→1 radio group -->
+                    <input type="radio" name="rating" id="star5" value="5" checked><label for="star5"><i
+                            class="fa-solid fa-star"></i></label>
+                    <input type="radio" name="rating" id="star4" value="4"><label for="star4"><i
+                            class="fa-solid fa-star"></i></label>
+                    <input type="radio" name="rating" id="star3" value="3"><label for="star3"><i
+                            class="fa-solid fa-star"></i></label>
+                    <input type="radio" name="rating" id="star2" value="2"><label for="star2"><i
+                            class="fa-solid fa-star"></i></label>
+                    <input type="radio" name="rating" id="star1" value="1"><label for="star1"><i
+                            class="fa-solid fa-star"></i></label>
+                </div>
+                <textarea name="comment" rows="4" placeholder="Share your thoughts..." required></textarea>
+                <input type="file" name="photo" accept="image/*">
+                <button class="btn btn-primary" type="submit">Submit Review</button>
+                <button class="btn" type="button" id="close-modal">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/91999999999" class="shadow"
+        style="position:fixed;bottom:1.5rem;right:1.5rem;background:#25D366;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem;z-index:999"
+        target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="logo.png" alt="AURONOX Logo" />
+                <p>Be luxurious always.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <!-- <li><a href="#watches">Everything</a></li> -->
+                    <li><a href="#watches"><a href="index.html">Everything</a></a></li>
+
+                    <!-- <li><a href="#Women"><a href="women.html"></a>Women</a></li> -->
+                    <li><a href="#Women"><a href="women.html">Women</a></a></li>
+                    <!-- <li><a href="#Men"><a href="men.html"></a>Men</a></li> -->
+                    <li><a href="#men"><a href="men.html">Men</a></a></li>
+                    <!-- <li><a href="#Accessories">Accessories</a></li> -->
+                    <li><a href="#Accessories"><a href="Accessories.html">Accessories</a></a></li>
+                    <!-- <li><a href="#CONTACTUS">Contact Us</a></li> -->
+                    <li><a href="#contact"><a href="contact.html">Contact us</a></a></li>
+                    <li><a href="#ADDTOCART"><a href="ADDTOCART.html"> Add to Cart <i
+                                    class="fa-solid fa-cart-shopping"></i></a></a></li>
+                    <!-- <li><a href="#PROFILE"><i class="fa-solid fa-user"></i></a></li> -->
+                    <li><a href="#PROFILE"><a href="profile.html">profile <i class="fa-solid fa-user"></i></a></a></li>
+                </ul>
+            </div>
+
+            <div class="footer-social">
+                <h4>Follow Us</h4>
+                <div class="menu">
+                    <div class="toggle">
+                        <ion-icon name="share-social"></ion-icon>
+                    </div>
+                    <li style="--i: 0; --clr: #1877f2">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    </li>
+                    <li style="--i: 1; --clr: #25d366">
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </li>
+                    <li style="--i: 2; --clr: #1b1e21">
+                        <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    </li>
+                    <li style="--i: 3; --clr: #ff5733">
+                        <a href="#"><i class="fab fa-reddit-alien"></i></a>
+                    </li>
+                    <li style="--i: 4; --clr: #0a66c2">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                    <li style="--i: 5; --clr: #c32aa3">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </li>
+                    <li style="--i: 6; --clr: #1b1e21">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </li>
+                    <li style="--i: 7; --clr: #ff0000">
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </li>
+                </div>
+                <script src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js'></script>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 AURONOX. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        const menu = document.querySelector(".menu");
+        const toggle = document.querySelector(".toggle");
+        toggle.addEventListener("click", () => {
+            menu.classList.toggle("active");
+        })
+    </script>
+
+    <script>
+        /* ---------- UTIL FUNCS ---------- */
+        const select = (q) => document.querySelector(q);
+        const selectAll = (q) => [...document.querySelectorAll(q)];
+        /* LocalStorage helpers */
+        const LS = { get: (key, def) => JSON.parse(localStorage.getItem(key) || JSON.stringify(def)), set: (key, val) => localStorage.setItem(key, JSON.stringify(val)) };
+
+        /* ---------- THUMBNAIL SWAP ---------- */
+        const mainImage = select('#main-image');
+        select('#thumbs').addEventListener('click', e => {
+            if (e.target.tagName === 'IMG') {
+                selectAll('#thumbs img').forEach(i => i.classList.remove('active'));
+                e.target.classList.add('active');
+                mainImage.src = e.target.src;
+            }
+        });
+
+        /* ---------- ZOOM ---------- */
+        const zoomWrap = select('#zoom-wrapper');
+        zoomWrap.addEventListener('mousemove', e => {
+            const rect = e.target.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width * 100;
+            const y = (e.clientY - rect.top) / rect.height * 100;
+            e.target.style.transformOrigin = `${x}% ${y}%`;
+        });
+
+        /* ---------- COUNTDOWN ---------- */
+        const endDate = Date.now() + 36 * 60 * 60 * 1000; // 36h flash offer
+        const countdownEl = select('#countdown-timer');
+        setInterval(() => {
+            const diff = endDate - Date.now();
+            if (diff <= 0) { countdownEl.textContent = '00:00:00'; return; }
+            const h = Math.floor(diff / 1000 / 60 / 60).toString().padStart(2, '0');
+            const m = Math.floor(diff / 1000 / 60 % 60).toString().padStart(2, '0');
+            const s = Math.floor(diff / 1000 % 60).toString().padStart(2, '0');
+            countdownEl.textContent = `${h}:${m}:${s}`;
+        }, 1000);
+
+        /* ---------- CART ---------- */
+        const CART_KEY = 'auronox_cart';
+        const cartIcon = select('#cart-icon');
+        const cartCountEl = select('#cart-count');
+        const cartDrawer = select('#cart-drawer');
+        const cartItemsWrap = select('#cart-items');
+        const cartTotalEl = select('#cart-total');
+        const cartCountDrawer = select('#cart-count-drawer');
+
+        function calcCart() { const c = LS.get(CART_KEY, []); cartCountEl.textContent = c.reduce((s, p) => s + p.qty, 0); cartCountDrawer.textContent = cartCountEl.textContent; cartTotalEl.textContent = c.reduce((s, p) => s + p.qty * p.price, 0).toLocaleString(); return c }
+        function renderCart() {
+            const cart = calcCart(); cartItemsWrap.innerHTML = ''; cart.forEach(p => {
+                const el = document.createElement('div'); el.className = 'cart-item';
+                el.innerHTML = `<img src="${p.img}" alt="${p.name}"><div class="info"><div>${p.name}</div><div>₹${p.price}</div><div class="qty-controls"><button data-id="${p.id}" class="minus">-</button><input type="number" value="${p.qty}" min="1"><button data-id="${p.id}" class="plus">+</button></div></div><button data-id="${p.id}" class="del"><i class="fa-solid fa-trash"></i></button>`;
+                cartItemsWrap.appendChild(el);
+            });
+        }
+        renderCart();
+
+        cartIcon.addEventListener('click', e => { e.preventDefault(); cartDrawer.classList.add('open') });
+        select('#close-cart').addEventListener('click', () => cartDrawer.classList.remove('open'));
+
+        cartItemsWrap.addEventListener('click', e => {
+            const id = e.target.dataset.id;
+            if (!id) return;
+            let cart = LS.get(CART_KEY, []);
+            const idx = cart.findIndex(p => p.id === id);
+            if (idx === -1) return;
+            if (e.target.classList.contains('plus')) { cart[idx].qty++; }
+            else if (e.target.classList.contains('minus')) { cart[idx].qty = Math.max(1, cart[idx].qty - 1); }
+            else if (e.target.closest('.del')) { cart.splice(idx, 1); }
+            LS.set(CART_KEY, cart); renderCart();
+        });
+
+
+
+        /* ADD TO CART FROM HERO */
+        const qtyInput = select('#qty-input');
+        select('#plus-btn').onclick = () => qtyInput.value = +qtyInput.value + 1;
+        select('#minus-btn').onclick = () => qtyInput.value = Math.max(1, +qtyInput.value - 1);
+        select('#add-to-cart').onclick = () => {
+            let cart = LS.get(CART_KEY, []);
+            const productId = 'chrono-black-42';
+            const existing = cart.find(p => p.id === productId);
+            if (existing) existing.qty += +qtyInput.value; else cart.push({ id: productId, name: 'Auronox-Ayana', price: 10999, img: mainImage.src, qty: +qtyInput.value });
+            LS.set(CART_KEY, cart); renderCart(); alert('Added to cart ✔');
+            document.getElementById('buy-now').classList.remove('hidden');
+            document.getElementById('add-to-cart').classList.add('hidden');
+
+        };
+
+
+
+        document.getElementById('buy-now').addEventListener('click', () => {
+            // 1) make sure cart drawer is open, or
+            // 2) redirect straight to checkout page
+
+            // Option A – open drawer & scroll to bottom
+            cartDrawer.classList.add('open');
+            cartDrawer.scrollIntoView({ behavior: 'smooth' });
+
+            // Option B – redirect (when you have a checkout route)
+            // window.location.href = 'checkout.html';
+        });
+
+        function addToCart(productObj, qty = 1) {
+            let cart = LS.get(CART_KEY, []);
+            const existing = cart.find(p => p.id === productObj.id);
+            if (existing) {
+                existing.qty += qty;
+            } else {
+                cart.push({ ...productObj, qty });
+            }
+            LS.set(CART_KEY, cart);
+            renderCart();                 // refresh drawer & badge
+        }
+
+
+
+
+        /* ---------- WISHLIST ---------- */
+        const WL_KEY = 'auronox_wishlist';
+        const wishlistBtn = select('#wishlist-btn');
+        const wishlistCount = select('#wishlist-count');
+        function updateWishlistUI() { const wl = LS.get(WL_KEY, []); wishlistCount.textContent = wl.length; wishlistBtn.classList.toggle('active', wl.includes('chrono-black-42')) }
+        wishlistBtn.onclick = () => { let wl = LS.get(WL_KEY, []); const id = 'chrono-black-42'; wl.includes(id) ? wl = wl.filter(x => x !== id) : wl.push(id); LS.set(WL_KEY, wl); updateWishlistUI() };
+        updateWishlistUI();
+
+        localStorage.removeItem('cart');
+
+
+        /* ---------- REVIEWS SYSTEM (Mock API) ---------- */
+        const reviewFeed = select('#review-feed');
+        const loadMoreBtn = select('#load-more');
+        let skip = 0, limit = 3;
+        async function fetchReviews() {// demo stub with placeholder data
+            const demo = [{ name: 'Ravi A.', rating: 5, comment: 'Loved the build quality!', photo: '' }, { name: 'Sneha K.', rating: 4, comment: 'Looks premium on wrist', photo: 'https://placehold.co/120x120?text=Img' }, { name: 'Arjun P.', rating: 5, comment: 'Great value for money', photo: '' }, { name: 'Maria L.', rating: 5, comment: 'Strap is super comfy', photo: '' }, { name: 'Zoya S.', rating: 4, comment: 'Dial is a bit large for small wrists', photo: '' }];
+            return new Promise(r => setTimeout(() => r(demo.slice(skip, skip + limit)), 500));
+        }
+
+        async function loadReviews() {
+            const list = await fetchReviews(); if (list.length < limit) loadMoreBtn.style.display = 'none'; else loadMoreBtn.style.display = 'block'; list.forEach(r => {
+                const div = document.createElement('div'); div.className = 'single-review';
+                div.innerHTML = `<header>${'⭐'.repeat(r.rating)} · ${r.name}</header><p>${r.comment}</p>`;
+                if (r.photo) div.innerHTML += `<img src="${r.photo}" alt="review photo" style="margin-top:.5rem;border-radius:6px;max-width:120px">`;
+                reviewFeed.appendChild(div);
+            });
+            skip += limit;
+        }
+        loadReviews();
+        loadMoreBtn.onclick = loadReviews;
+
+        /* REVIEW MODAL SUBMIT */
+        const reviewModal = select('#review-modal');
+        select('#open-review-modal').onclick = () => reviewModal.classList.remove('hidden');
+        select('#close-modal').onclick = () => reviewModal.classList.add('hidden');
+        select('#review-form').onsubmit = e => { e.preventDefault(); alert('Review submitted ✔ (backend endpoint needed)'); reviewModal.classList.add('hidden'); };
+
+        /* ---------- RECOMMENDATIONS ---------- */
+        const recData = [
+            { id: 'sporty-blue', name: 'AURONOX Sporty Blue', price: 1999, img: 'AURONOX24.jpg' },
+            { id: 'classic-brown', name: 'Classic Brown Leather', price: 2299, img: 'AURONOX25.jpg' },
+            { id: 'minimal-silver', name: 'Minimal Silver Mesh', price: 1899, img: 'AURONOX26.jpg' },
+            { id: 'diver-x', name: 'Diver X Navy', price: 2899, img: 'AURONOX19.jpg' }
+
+        ];
+        const recGrid = select('#rec-grid');
+        recData.forEach(p => {
+            const card = document.createElement('div'); card.className = 'rec-card';
+            card.innerHTML = `<img src="${p.img}" alt="${p.name}"><div>${p.name}</div><div class="price"><strong>₹${p.price}</strong></div><button class="btn btn-outline" data-id="${p.id}">Add to Cart</button>`;
+            recGrid.appendChild(card);
+        });
+        // recGrid.addEventListener('click', e => { if (e.target.matches('button[data-id]')) { alert('Add to Cart for ' + e.target.dataset.id + ' (implement logic)') } });
+
+
+
+        recGrid.addEventListener('click', e => {
+            const btn = e.target.closest('button[data-id]');
+            if (!btn) return;
+
+            const p = recData.find(prod => prod.id === btn.dataset.id);
+            if (p) {
+                addToCart({ id: p.id, name: p.name, price: p.price, img: p.img });
+                // alert(`${p.name} added to cart ✔`);
+
+            }
+        });
+
+
+
+        // ---------- gallery logic ----------
+        const images = ["AURONOX20.jpg", "AURONOX20.1.jpg", "AURONOX20.2.jpg", "AURONOX20.3.jpg"]; // add or remove paths as needed
+        let current = 0;
+
+        const mainImg = document.getElementById("main-image");
+        const prevBtn = document.querySelector(".arrow.prev");
+        const nextBtn = document.querySelector(".arrow.next");
+        const thumbs = document.querySelectorAll(".thumbs img");
+
+        function updateGallery(index) {
+            current = (index + images.length) % images.length; // wrap around
+            mainImg.src = images[current];
+            thumbs.forEach(t => t.classList.toggle("active", Number(t.dataset.index) === current));
+        }
+
+        // arrow clicks
+        prevBtn.addEventListener("click", () => updateGallery(current - 1));
+        nextBtn.addEventListener("click", () => updateGallery(current + 1));
+
+        // thumbnail clicks
+        thumbs.forEach(t => t.addEventListener("click", () => updateGallery(Number(t.dataset.index))));
+
+    </script>
+
+
+
+    <script>
+        const burger = document.getElementById('hamburger');
+        const closeBtn = document.getElementById('close-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        // open menu
+        burger.addEventListener('click', () => {
+            navMenu.classList.add('show');      // slide‑in panel
+            burger.style.display = 'none';    // hide ☰
+            closeBtn.style.display = 'block';   // show ×
+        });
+
+        // close menu (cross click)
+        closeBtn.addEventListener('click', closeMenu);
+
+        // close when a link is tapped
+        navMenu.addEventListener('click', e => {
+            if (e.target.tagName === 'A') closeMenu();
+        });
+
+        function closeMenu() {
+            navMenu.classList.remove('show');
+            burger.style.display = 'block';
+            closeBtn.style.display = 'none';
+        }
+    </script>
+
+
+
+</body>
+
+</html>
